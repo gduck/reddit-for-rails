@@ -1,0 +1,14 @@
+<h1>A list of votes should be here:</h1>
+
+<table>
+  <% @votes.each do |vote| %>
+    <tr> 
+      <p> 
+      <% vote.id %>
+      <%= "The article number is #{vote.articleID}" %><br>
+      <%= "The user ID is #{vote.userID}" %><br>
+      <%= "The number of votes is #{vote.numVotes}" %><br>
+      </p>
+    </tr>
+  <% end %>
+</table>

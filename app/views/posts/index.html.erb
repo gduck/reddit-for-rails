@@ -1,0 +1,16 @@
+<h1>A list of posts should be here:</h1>
+
+<% @posts.each do |post| %>
+  <%= link_to post do %>
+    <div> 
+    <%= post.id %>
+    <%= "Title: #{post.title} & url: " %>
+    <%= post.url %><br>
+     <% link_to "link this post", post %>
+    </div>
+  <% end %>  
+<% end %>
+
+
+<% link_to "New Post", new_post_path %>
+

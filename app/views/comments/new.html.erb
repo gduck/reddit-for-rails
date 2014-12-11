@@ -1,0 +1,16 @@
+<h1>A new form to create new comments</h1>
+
+<!-- connects to the POST method by default -->
+<%= form_for @comment, :method => :post do |f| %>
+  <%= f.label "User ID" %>
+  <%= f.text_field :userID %>
+
+  <%= f.label "Article ID" %>
+  <%= f.text_field :articleID %>
+  <br>
+  <%= f.label :comment %>
+  <%= f.text_field :comment %>
+  <br>
+  <%= f.submit "Submit" %>
+
+  <% end %>

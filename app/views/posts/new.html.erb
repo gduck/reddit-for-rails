@@ -1,0 +1,13 @@
+<h1>A new form to create new posts</h1>
+
+<!-- connects to the POST method by default -->
+<%= form_for @post, :method => :post do |f| %>
+  <%= f.label :title %>
+  <%= f.text_field :title %>
+
+  <%= f.label :url %>
+  <%= f.text_field :url %>
+
+  <%= f.submit "Submit" %>
+
+  <% end %>

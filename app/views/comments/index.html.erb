@@ -1,0 +1,12 @@
+<h1>A list of comments should be here:</h1>
+
+<% @comments.each do |comment| %>
+  <%= link_to comment do %>
+  <div> 
+  <%= "This is comment #{comment.id} " %>
+  <%= "which belongs to this article ID: #{comment.articleID}" %><br>
+  <%= comment.comment %><br>
+  <%= "User ID # #{comment.userID}" %>
+  </div>
+  <% end %>
+<% end %>
