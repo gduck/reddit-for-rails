@@ -16,6 +16,7 @@ Rails.application.routes.draw do
   get '/comments' => 'comments#index'
   get '/votes' => 'votes#index'
 
+
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 
