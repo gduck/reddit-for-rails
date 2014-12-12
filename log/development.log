@@ -6662,3 +6662,71 @@ Started GET "/assets/votes.js?body=1" for 127.0.0.1 at 2014-12-12 09:21:47 +0800
 
 
 Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-12-12 09:21:47 +0800
+
+
+Started POST "/posts" for 127.0.0.1 at 2014-12-12 09:34:23 +0800
+Processing by PostsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"hzojOdvv9XOX5pD0FRaxBpkQLMbl3gElhvZhns021I0=", "post"=>{"title"=>"as", "url"=>"https://www.google.com"}, "commit"=>"Submit"}
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "posts"[0m
+  [1m[35mPost Load (0.2ms)[0m  SELECT  "posts".* FROM "posts"   ORDER BY "posts"."created_at" DESC LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT COUNT(*) FROM "posts"[0m
+  [1m[35mSQL (0.6ms)[0m  INSERT INTO "posts" ("created_at", "title", "updated_at", "url") VALUES (?, ?, ?, ?)  [["created_at", "2014-12-12 01:34:23.819296"], ["title", "as"], ["updated_at", "2014-12-12 01:34:23.819296"], ["url", "https://www.google.com"]]
+  [1m[36m (3.7ms)[0m  [1mcommit transaction[0m
+Redirected to http://localhost:3000/posts
+Completed 302 Found in 16ms (ActiveRecord: 5.2ms)
+
+
+Started GET "/posts" for 127.0.0.1 at 2014-12-12 09:34:23 +0800
+Processing by PostsController#index as HTML
+  [1m[35mPost Load (0.2ms)[0m  SELECT "posts".* FROM "posts"
+  Rendered posts/index.html.erb within layouts/application (4.5ms)
+Completed 200 OK in 188ms (Views: 186.6ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/assets/posts.css?body=1" for 127.0.0.1 at 2014-12-12 09:34:24 +0800
+
+
+Started GET "/assets/custom.css?body=1" for 127.0.0.1 at 2014-12-12 09:34:24 +0800
+
+
+Started GET "/assets/static_pages.css?body=1" for 127.0.0.1 at 2014-12-12 09:34:24 +0800
+
+
+Started GET "/assets/votes.css?body=1" for 127.0.0.1 at 2014-12-12 09:34:24 +0800
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-12-12 09:34:24 +0800
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-12-12 09:34:24 +0800
+
+
+Started GET "/assets/comments.css?body=1" for 127.0.0.1 at 2014-12-12 09:34:24 +0800
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-12-12 09:34:24 +0800
+
+
+Started GET "/assets/comments.js?body=1" for 127.0.0.1 at 2014-12-12 09:34:24 +0800
+
+
+Started GET "/assets/jquery.min.js?body=1" for 127.0.0.1 at 2014-12-12 09:34:24 +0800
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-12-12 09:34:24 +0800
+
+
+Started GET "/assets/posts.js?body=1" for 127.0.0.1 at 2014-12-12 09:34:24 +0800
+
+
+Started GET "/assets/static_pages.js?body=1" for 127.0.0.1 at 2014-12-12 09:34:24 +0800
+
+
+Started GET "/assets/votes.js?body=1" for 127.0.0.1 at 2014-12-12 09:34:24 +0800
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-12-12 09:34:24 +0800
+
+
+Started GET "/assets/jquery-ui.css?body=1" for 127.0.0.1 at 2014-12-12 09:34:24 +0800

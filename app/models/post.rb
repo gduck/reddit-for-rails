@@ -4,7 +4,7 @@ class Post < ActiveRecord::Base
   # regex = regular expression
   URL_REGEX = /https?:\/\/[\S]+/
 
-  validates :title, :length => { maximum: 3 }, :presence => true
+  validates :title, :length => { maximum: 140 }, :presence => true
   validates :url, :length => { maximum: 140 }, :allow_blank => true, :format => { with: URL_REGEX }
 
 
@@ -23,19 +23,19 @@ class Post < ActiveRecord::Base
   end
 
   def spam_free
-
     count = Post.count
     if count > 0
-    # order all the posts reverse chronologically
-    # the latest post
-    # get the posted time for the latest post
-    last_post = Post.order(:created_at).last
-    latest_time = last_post.created_at
-    end
-    # goal: the user can only post after 1 minute
-    if latest_time > 1.minute.ago
-      # if this is true, the last post was made in less 1 minute ago, so please raise an error
-      self.errors.add(:base, "Cannot post within 1 minute")
+      # order all the posts reverse chronologically
+      # the latest post
+      # get the posted time for the latest post
+      last_post = Post.order(:created_at).last
+      latest_time = last_post.created_at
+    
+      # goal: the user can only post after 1 minute
+      if latest_time > 1.minute.ago
+        # if this is true, the last post was made in less 1 minute ago, so please raise an error
+        self.errors.add(:base, "Cannot post within 1 minute")
+      end
     end
   end
 end
