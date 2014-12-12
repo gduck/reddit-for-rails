@@ -14,6 +14,8 @@ class PostsController < ApplicationController
     post = Post.new(post_params)
     if post.save
       redirect_to posts_path
+    else
+      redirect_to :back
     end
   end
 
