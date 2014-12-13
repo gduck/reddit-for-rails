@@ -4,9 +4,9 @@
   <%= link_to comment do %>
   <div> 
   <%= "This is comment #{comment.id} " %>
-  <%= "which belongs to this article ID: #{comment.articleID}" %><br>
+  <%= "which belongs to this article ID: #{comment.post_id}" %><br>
   <%= comment.comment %><br>
-  <%= "User ID # #{comment.userID}" %>
+  <%= "User ID # #{comment.user_id}" %>
   </div>
   <% end %>
 <% end %>

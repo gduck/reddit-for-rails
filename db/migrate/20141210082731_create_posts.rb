@@ -5,6 +5,7 @@ class CreatePosts < ActiveRecord::Migration
       #t.datatype :column_name
       t.string :title
       t.string :url
+      t.integer :user_id
 
       t.timestamps
     end

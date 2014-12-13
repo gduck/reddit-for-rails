@@ -2,6 +2,9 @@
 
 <!-- connects to the POST method by default -->
 <%= form_for @post, :method => :post do |f| %>
+
+  <%= flash[:message] %>
+
   <%= f.label :title %>
   <%= f.text_field :title %>
 

@@ -3,18 +3,24 @@ class CommentsController < ApplicationController
     @comments = Comment.all
   end
 
-  def new
-    @comment = Comment.new
-  end
+# new is the page
+  #def new
+  #  @comment = Comment.new
+  #end
+
 
   # in resources, #create comes from POST method
   def create
     # creates an instance of the record
     # that hasn't been saved yet
-    comment = Comment.new(comment_params)
+    #comment = Comment.new(comment_params)
+    comment = current_user.comments.new(comment_params)
     if comment.save
-      redirect_to comments_path
+      redirect_to comment.post
+    else
+      redirect_to :back
     end
+
   end
 
   # this only shows 1 post
@@ -27,7 +33,7 @@ class CommentsController < ApplicationController
   # the parameters that we allow
   private
     def comment_params
-      params.require(:comment).permit(:userID, :articleID, :comment)
+      params.require(:comment).permit(:post_id, :comment)
     end
 
 

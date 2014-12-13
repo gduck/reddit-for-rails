@@ -17,3 +17,36 @@
 
 @import "bootstrap-sprockets";
 @import "bootstrap";
+
+.table {
+  //width: 75%;
+}
+
+h3 {
+  // display: block;
+  margin-top: 0;
+}
+
+html {
+  overflow-y: scroll;
+}
+
+body {
+  padding-top: 0px;
+}
+
+section {
+  overflow: auto;
+}
+
+textarea {
+  resize: vertical;
+}
+
+.center {
+  text-align: center;
+}
+
+.center h1 {
+  margin-bottom: 10px;
+}

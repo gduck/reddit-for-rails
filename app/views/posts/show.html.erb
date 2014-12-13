@@ -1,13 +1,56 @@
-
+<div class="col-xs-10">
 <!-- This is the view -->
-<div> 
- <%= @post.id %>
- <h1><%= "Title: #{@post.title} & url: " %></h1>
- <h2><%= @post.url %><br></h2>
+<table class="table table-style"> 
+  <tbody> 
+  <% @post.id %>
+    <tr>
+      <th><h3><%= @post.title %></h3></th>
+    </tr>
+    <tr>
+      <td><h4 class="indent">URL: <%= @post.url %><br></h4></td>
+    </tr>
+    <tr>
+      <td><h5 class="indent">Owner email: <%= link_to @post.user.email, @post.user %></h5></td>
+    </tr>
+    <tr>
+      <td><h5 class="indent">Created at: <%= @post.created_at %></h5></td>
+    </tr>
+ </tbody>
+</table>
 </div>
 
+<div class="col-xs-10">
+  <div class="table table-style">
+    <%= form_for @comment do |f| %>
+  
+      <%= f.label :Comment %>
+      <%= f.text_field :comment %>
 
-<% link_to "New Post", new_post_path %>
+      <%= f.text_field :post_id, :value => @post.id, :hidden => true %>
+      <%= f.submit "Submit new comment" %>
+    <% end %>
+  </div>
+</div>
+
+<div class="col-xs-10">
+<h3 class="heading top-space col-xs-10">Comments</h3>
+<table class="table table-style table-alt-color">
+  <thead>
+    <tr>
+      <th>Content</th>
+      <th>Owner</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @post.comments.each do |comment| %>
+    <tr>
+      <td><%= comment.comment %></td>
+      <td><%= comment.user.email %></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+</div>
 
 
 

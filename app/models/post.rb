@@ -1,5 +1,8 @@
 class Post < ActiveRecord::Base
-# validates :column_name, 
+# validates :column_name,
+  belongs_to :user 
+  
+  has_many :comments
 
   # regex = regular expression
   URL_REGEX = /https?:\/\/[\S]+/
