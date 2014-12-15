@@ -1,0 +1,54 @@
+
+<!-- This is the view -->
+<div class="col-xs-10"> 
+ <% @user.id %>
+ <h2><%= @user.email %></h2>
+ <h5>Created at:<%= @user.created_at %></h5>
+</div>
+
+<h3 class="heading col-xs-10 top-space">Posts for this user</h3>
+<div class="col-xs-10">
+  <table class="table table-style">
+    <thead>
+      <tr>
+        <th>Post Title</th>
+        <th>Post URL</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @user.posts.each do |post| %>
+        <tr>
+          <td class="post-title"><%= link_to "#{post.title}", post %></td>
+          <td class="post-URL"><%= post.url %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+
+<h3 class="heading col-xs-10">Comments for this user</h3>
+<div class="col-xs-10">
+  <table class="table table-style">
+    <thead>
+      <tr>
+        <th>Article Title</th>
+        <th>Comments</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @user.comments.each do |comment| %>
+        <tr>
+          <td class="post-title"><%= link_to "#{comment.post.title}", post_path %></td>
+          <td class="comment"><%= comment.comment %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+
+
+
+
+
+
+

@@ -3,8 +3,8 @@ class CreateVotes < ActiveRecord::Migration
     create_table :votes do |t|
 
       #t.datatype :column_name
-      t.integer :articleID
-      t.integer :userID
+      t.integer :post_id
+      t.integer :user_id
       t.integer :numVotes
 
       t.timestamps

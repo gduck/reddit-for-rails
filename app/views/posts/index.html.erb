@@ -1,16 +1,52 @@
-<h1>A list of posts should be here:</h1>
+<div id="list-posts" class="col-xs-10">
+  <h3 class="heading">A list of posts:</h3><br>
+  <table class="table table-style">
+    <thead>
+      <tr>
+        <th>Post ID</th>
+        <th>Owner</th>
+        <th>Title</th>
+        <th>url</th>
+        <th>link</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @posts.each do |post| %>
+        <tr>  
+          <td class="post-ID"><%= post.id %></td>
+          <td class="owner-ID"><%= post.user.email %></td>
+          <td class="post-title"><%= link_to post.title, post %></td>
+          <td class="post-URL"><%= post.url %></td>
+          <td class="post-link"><%= link_to "link to this post", post %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <br>
+</div>
 
-<% @posts.each do |post| %>
-  <%= link_to post do %>
-    <div> 
-    <%= post.id %>
-    <%= "Title: #{post.title} & url: " %>
-    <%= post.url %><br>
-     <% link_to "link this post", post %>
-    </div>
-  <% end %>  
-<% end %>
+<div id="new-post" class="col-xs-10">
+  <h3 class="heading">New post:</h3>
 
+  <table class="table table-style">
+    <tbody>
+      <tr>
+        <%= form_for @post, :method => :post do |f| %>
+          <td>
+            <%= flash[:message] %>
+          </td><td class="third left-align">
+            <%= f.label :title %>
+            <%= f.text_field :title %>
+          </td><td class="third left-align">
+            <%= f.label :url %>
+            <%= f.text_field :url %>
+          </td><td>
+            <%= f.submit "Submit" %>
+          </td>
+        <% end %>
+      </tr>
+    </tbody>
+  </table>
+</div>
 
-<% link_to "New Post", new_post_path %>
 

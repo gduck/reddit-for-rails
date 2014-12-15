@@ -1,16 +1,23 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Rails Basic Template</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <script type="text/javascript" src="https://code.jquery.com/ui/1.11.2/jquery-ui.min.js"></script>
+  <head>
+    <title>Rails Basic Template</title>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+    <script type="text/javascript" src="https://code.jquery.com/ui/1.11.2/jquery-ui.min.js"></script>
   
-  <%= csrf_meta_tags %>
-</head>
-<body class="vertical-center body-background">
+    <%= csrf_meta_tags %>
+  </head>
 
-<%= yield %>
+  
 
-</body>
+  <body class="body-class">
+    <div id="header" class="col-xs-12">    
+      <%= render 'layouts/header' %>
+    </div>
+    <div id="content">
+      <%= yield %>
+    </div>
+  </body>
+
 </html>
