@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  root 'static_pages#index'
+  root 'posts#index'
 
   # replace these 2 get commands with the resources
   #get '/posts' => 'posts#index'
@@ -18,6 +18,10 @@ Rails.application.routes.draw do
   get '/comments' => 'comments#index'
   get '/votes' => 'votes#index'
 
+  # given the post :id, use the PostVote Controller to create a post
+  # our form will send to this url address when we set it up to do so
+  # a get request requires the user to manually go to this url
+  post 'post_votes/:id', to: 'post_votes#create'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
