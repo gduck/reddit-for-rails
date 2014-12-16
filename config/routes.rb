@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   #get '/posts/new' => 'posts#new'
 
   resources :posts
-  resources :comments
+  #resources :comments
   resources :users
 
   get '/comments' => 'comments#index'
@@ -22,6 +22,8 @@ Rails.application.routes.draw do
   # our form will send to this url address when we set it up to do so
   # a get request requires the user to manually go to this url
   post 'post_votes/:id', to: 'post_votes#create'
+
+  post 'comments' => 'comments#create'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

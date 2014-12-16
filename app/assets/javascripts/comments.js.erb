@@ -1,0 +1,58 @@
+//# Place all the behaviors and hooks related to the matching controller here.
+//# All this logic will automatically be available in application.js.
+//# You can use CoffeeScript in this file: http://coffeescript.org/
+
+
+$(document).ready(function() {
+
+  $(document).on('click', '#btn_cmt', function() {
+
+    var postID = $(this).data('id');
+    var thisComment = $("#comment_comment").val();
+    console.log('post ID',postID);
+    console.log('thisComment',thisComment);
+
+    $.ajax({
+      type: 'post',
+      beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},
+      url: '/comments',
+      data: {
+        'post_id': postID,
+        'comment': thisComment
+      },
+      success: function(response, status){
+        if (status == 'success') {
+          console.log('response',response);
+          redrawTable(response);
+        }
+      },
+      error: function(response, status) { 
+        alert(response.responseText); 
+        console.log(status);
+      }
+
+    })
+  });
+
+  var redrawTable = function(responseObject) {
+    
+    var comment = (responseObject.data.comment);
+    //var userEmail = $('#current_email').text();
+    var userEmail = (responseObject.email);
+    var myString = "<tr><td>" + comment + "</td><td>" + userEmail + "</td>";
+    myString += "<td class=\"delete-btn\"><a ref=\"\">Remove</a></td></tr>";
+
+    //$("#comment-table-body").prepend(string);
+    $(myString).prependTo($("#comment-table-body")).slideDown('slow');
+    $("#comment_comment").val("");
+
+  }
+
+    $(document).on('click', '.delete-btn', function(e) {
+      e.preventDefault();
+
+      $(this).parent().parent().fadeOut('slow', function(){});
+    });
+
+});
+

@@ -3,38 +3,28 @@ class CommentsController < ApplicationController
     @comments = Comment.all
   end
 
-# new is the page
-  #def new
-  #  @comment = Comment.new
-  #end
 
-
-  # in resources, #create comes from POST method
   def create
-    # creates an instance of the record
-    # that hasn't been saved yet
-    #comment = Comment.new(comment_params)
-    comment = current_user.comments.new(comment_params)
+
+    comment = Comment.new(
+      :comment => params[:comment], 
+      :post_id => params[:post_id],
+      :user => current_user
+    )
+    puts 'params[:comment]>>>>>>>>>>>>>>', params[:comment][:comment]
+    puts 'params[:post_id]>>>>>>>>>>>>>>', params[:comment][:post_id]
+    
     if comment.save
-      redirect_to comment.post
+      #display
+      # if no ajax this gets displayed
+      render json: {
+        data: comment, 
+        email: current_user.email
+      }, status: 201
     else
-      redirect_to :back
+      #redirect_to :back
     end
-
   end
-
-  # this only shows 1 post
-  def show
-    # params[:id] will look for the id in the URL
-    # this will retrieve the post with a specific id
-    @comment = Comment.find(params[:id])
-  end
-
-  # the parameters that we allow
-  private
-    def comment_params
-      params.require(:comment).permit(:post_id, :comment)
-    end
 
 
 end
