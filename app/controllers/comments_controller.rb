@@ -7,8 +7,8 @@ class CommentsController < ApplicationController
   def create
 
     comment = Comment.new(
-      :comment => params[:comment], 
-      :post_id => params[:post_id],
+      :comment => params[:comment][:comment], 
+      :post_id => params[:comment][:post_id],
       :user => current_user
     )
     puts 'params[:comment]>>>>>>>>>>>>>>', params[:comment][:comment]
@@ -22,9 +22,12 @@ class CommentsController < ApplicationController
         email: current_user.email
       }, status: 201
     else
-      #redirect_to :back
+      redirect_to :back
     end
   end
 
+  def comment_params
+    params.require(:comment).permit(:comment, :post_id, :user)
+  end
 
 end

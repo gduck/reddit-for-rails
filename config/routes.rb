@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   #get '/posts/new' => 'posts#new'
 
   resources :posts
-  #resources :comments
+  resources :comments
   resources :users
 
   get '/comments' => 'comments#index'
