@@ -46,13 +46,15 @@
     <tr>
       <th>Content</th>
       <th>Owner</th>
+      <th></th>
     </tr>
   </thead>
-  <tbody>
-    <% @post.comments.each do |comment| %>
-    <tr>
+  <tbody id="comment-table-body">
+    <% @post.comments.reverse.each do |comment| %>
+    <tr class="comment-rows">
       <td><%= comment.comment %></td>
       <td><%= comment.user.email %></td>
+      <td><%= link_to "Remove", comment, method: :delete %></td>
     </tr>
     <% end %>
   </tbody>

@@ -7,27 +7,42 @@ $(document).ready(function() {
 
   $(document).on('click', '.btn_cmt', function(e) {
     e.preventDefault();
-    console.log("we are in btn_cmt click");
 
     var postID = $(this).data('id');
+    var thisComment = $("#comment_comment").val();
 
     $.ajax({
-      
       type: 'post',
       beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},
-      url: '/comments/' + postID,
-      
+      url: '/comments/',
+      data: {
+        post_id : postID,
+        comment: thisComment
+      },
       success: function(response, status){
         if (status == 'success') {
-          console.log("successful comment add");
+          redrawTable(response);
         }
       },
       error: function(response, status) { 
-        alert("Status: " + status + "Error: " + response); 
+        alert(response.responseText); 
       }
 
     })
   });
+
+  var redrawTable = function(responseObject) {
+    
+    var comment = (responseObject.comment);
+    var userEmail = $('#current_email').text();
+    var string = "<tr><td>" + comment + "</td><td>" + userEmail + "</td></tr>";
+
+    //$("#comment-table-body").prepend(string);
+    $(string).prependTo($("#comment-table-body")).slideDown('slow');
+    $("#comment_comment").val("");
+
+  }
+
 
 });
 

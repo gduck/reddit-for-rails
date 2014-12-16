@@ -6,8 +6,7 @@
           <div class="col-xs-1">
             <%= button_to "Home", posts_path, :method => :get %>
           </div>
-          <div class="col-xs-6 left-align white-color">
-            <%= "Signed in as #{current_user.email}" %><br>
+          <div class="col-xs-6 left-align white-color">Signed in as <span id="current_email"><%= current_user.email %></span><br>
           </div>
           <div class="col-xs-5 right-align">
             <%= button_to "Sign out", destroy_user_session_path, :method => :delete%>

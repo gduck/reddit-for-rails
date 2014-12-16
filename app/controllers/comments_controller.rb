@@ -10,9 +10,13 @@ class CommentsController < ApplicationController
     # creates an instance of the record
     # that hasn't been saved yet
     #comment = Comment.new(comment_params)
-    comment = current_user.comments.new(comment_params)
+
+    comment = current_user.comments.new(:post_id => params[:post_id], :comment => params[:comment])
+
+
     if comment.save
-      redirect_to comment.post
+      # this will set the response for the ajax success function
+      render json: comment, status: 201
     else
       redirect_to :back
     end
@@ -24,6 +28,11 @@ class CommentsController < ApplicationController
     # params[:id] will look for the id in the URL
     # this will retrieve the post with a specific id
     @comment = Comment.find(params[:id])
+  end
+
+  def destroy
+    comment = Comment.find(params[:id])
+    comment.destroy
   end
 
   # the parameters that we allow
