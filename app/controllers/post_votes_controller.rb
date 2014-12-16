@@ -1,4 +1,5 @@
 class PostVotesController < ApplicationController
+    before_action :authenticate_user!
 
   def create
     #finds the post, given an url with the id

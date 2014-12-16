@@ -1,4 +1,13 @@
 class PostsController < ApplicationController
+  # we are going to check the following conditions before we do any(!!) methods/actions in this controller
+  
+  before_action :authenticate_user!, only: [:new, :create]
+  # is the same as 
+  # before_action :authenticate_user!, except: [:index, :show]
+
+  #authenticate_user provided by Devise
+
+
   def index
     @posts = Post.all
     @post = Post.new

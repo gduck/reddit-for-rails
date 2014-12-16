@@ -1,13 +1,9 @@
 class CommentsController < ApplicationController
+  before_action :authenticate_user!
+
   def index
     @comments = Comment.all
   end
-
-# new is the page
-  #def new
-  #  @comment = Comment.new
-  #end
-
 
   # in resources, #create comes from POST method
   def create
