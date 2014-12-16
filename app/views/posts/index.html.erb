@@ -7,17 +7,17 @@
         <th>Owner</th>
         <th>Title</th>
         <th>url</th>
-        <th>link</th>
+        <th>votes</th>
       </tr>
     </thead>
     <tbody>
       <% @posts.each do |post| %>
         <tr>  
-          <td class="post-ID"><%= post.id %></td>
-          <td class="owner-ID"><%= post.user.email %></td>
-          <td class="post-title"><%= link_to post.title, post %></td>
-          <td class="post-URL"><%= post.url %></td>
-          <td class="post-link"><%= link_to "link to this post", post %></td>
+          <td><%= post.id %></td>
+          <td class="col-ID"><%= post.user.email %></td>
+          <td class="col-title"><%= link_to post.title, post %></td>
+          <td class="col-URL"><%= post.url %></td>
+          <td class="col-votes"><%= "Votes #{post.post_votes.count}"%></td>
         </tr>
       <% end %>
     </tbody>

@@ -9,8 +9,7 @@
       <th>
         <div class="col-xs-12"><h3><%= @post.title %></h3></div>
         <div class="col-xs-12">
-        <h5 class="col-xs-1"><%= button_to "Vote", "/post_votes/#{@post.id}", :class=> "glyphicon glyphicon-thumbs-up" %></h5>
-        <h5 class="col-xs-2">Votes : <%= @post.post_votes.count %> </h5>
+        <h5 class=""><%= link_to "", "#", :class=> "btn_vote glyphicon glyphicon-thumbs-up", 'data-id' => @post.id, 'data-user' => current_user.id %><span id="vote-count"><%= @post.post_votes.count %></span> </h5>
         </div>
       </th>
     </tr>

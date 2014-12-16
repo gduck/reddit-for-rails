@@ -1,0 +1,28 @@
+//# Place all the behaviors and hooks related to the matching controller here.
+//# All this logic will automatically be available in application.js.
+//# You can use CoffeeScript in this file: http://coffeescript.org/
+
+$(document).ready(function() {
+
+  $(document).on('click', '.btn_vote', function(e) {
+    e.preventDefault();
+
+    var postID = $(this).data('id');
+    var voteCount = $('#vote-count').text();
+
+    $.ajax({
+      
+      type: 'post',
+      beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},
+      url: '/post_votes/' + postID,
+      
+      success: function(response, status){
+        if (status == 'success') {
+          $('#vote-count').text(++voteCount);
+        }
+      }
+    })
+  });
+
+});
+
