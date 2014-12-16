@@ -21,6 +21,7 @@ $(document).ready(function() {
       },
       success: function(response, status){
         if (status == 'success') {
+          console.log(response);
           redrawTable(response);
         }
       },
@@ -35,13 +36,21 @@ $(document).ready(function() {
     
     var comment = (responseObject.comment);
     var userEmail = $('#current_email').text();
-    var string = "<tr><td>" + comment + "</td><td>" + userEmail + "</td></tr>";
+    var myString = "<tr><td>" + comment + "</td><td>" + userEmail + "</td>";
+    myString += "<td class=\"delete-btn\"><a ref=\"\">Remove</a></td></tr>";
 
     //$("#comment-table-body").prepend(string);
-    $(string).prependTo($("#comment-table-body")).slideDown('slow');
+    $(myString).prependTo($("#comment-table-body")).slideDown('slow');
     $("#comment_comment").val("");
 
   }
+
+    $(document).on('click', '.delete-btn', function(e) {
+      e.preventDefault();
+
+      $(this).parent().parent().fadeOut('slow', function(){});
+    });
+
 
 
 });

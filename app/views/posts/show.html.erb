@@ -54,7 +54,7 @@
     <tr class="comment-rows">
       <td><%= comment.comment %></td>
       <td><%= comment.user.email %></td>
-      <td><%= link_to "Remove", comment, method: :delete %></td>
+      <td><%= link_to "Remove", comment, method: :delete, :class => 'delete-btn' %></td>
     </tr>
     <% end %>
   </tbody>

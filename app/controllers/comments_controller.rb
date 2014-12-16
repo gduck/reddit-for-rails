@@ -11,6 +11,7 @@ class CommentsController < ApplicationController
     # that hasn't been saved yet
     #comment = Comment.new(comment_params)
 
+    # if you pass the current_user
     comment = current_user.comments.new(:post_id => params[:post_id], :comment => params[:comment])
 
 
@@ -33,6 +34,7 @@ class CommentsController < ApplicationController
   def destroy
     comment = Comment.find(params[:id])
     comment.destroy
+    redirect_to :back
   end
 
   # the parameters that we allow
