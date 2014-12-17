@@ -7,12 +7,12 @@ class CommentsController < ApplicationController
   def create
 
     comment = Comment.new(
-      :comment => params[:comment][:comment], 
-      :post_id => params[:comment][:post_id],
+      :comment => params[:comment], 
+      :post_id => params[:post_id],
       :user => current_user
     )
-    puts 'params[:comment]>>>>>>>>>>>>>>', params[:comment][:comment]
-    puts 'params[:post_id]>>>>>>>>>>>>>>', params[:comment][:post_id]
+    puts 'params[:comment]>>>>>>>>>>>>>>', params[:comment]
+    puts 'params[:post_id]>>>>>>>>>>>>>>', params[:post_id]
     
     if comment.save
       #display

@@ -50,7 +50,7 @@
     </tr>
   </thead>
   <tbody>
-    <% @post.comments.each do |comment| %>
+    <% @post.comments.reverse.each do |comment| %>
     <tr>
       <td><%= comment.comment %></td>
       <td><%= comment.user.email %></td>
