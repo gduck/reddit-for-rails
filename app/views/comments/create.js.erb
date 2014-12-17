@@ -1,8 +1,9 @@
 
-
 // NEED TO WRAP WITH ESCAPE JAVASCRIPT TO STRIP JS
 // AND THEN WE NEED RAW DATA OF THAT RESULT
 var new_comment = "<%= raw escape_javascript(render :partial => 'posts/comment', :locals => {:comment => @comment }) %>";
 
 $('#comments_list').prepend(new_comment);
 $('#comment_comment').val("");
+
+$('#error_message').text("");
