@@ -9,7 +9,9 @@ class CommentsController < ApplicationController
   def create
     # creates an instance of the record
     # that hasn't been saved yet
-    #comment = Comment.new(comment_params)
+    # comment = Comment.new(comment_params)
+    # params
+    # binding.pry
 
     # if you pass the current_user
     comment = current_user.comments.new(:post_id => params[:post_id], :comment => params[:comment])
@@ -19,7 +21,7 @@ class CommentsController < ApplicationController
       # this will set the response for the ajax success function
       render json: comment, status: 201
     else
-      redirect_to :back
+      # redirect_to :back
     end
 
   end

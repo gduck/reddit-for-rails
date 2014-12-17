@@ -34,7 +34,7 @@ gem 'devise'
 
 gem 'meta_request', group: :development
 
-
+gem 'pry'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
