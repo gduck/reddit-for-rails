@@ -26,6 +26,8 @@ $(document).ready(function() {
         }
       },
       error: function(response, status) { 
+        console.log("error");
+        console.log(response);
         alert(response.responseText); 
       }
 
@@ -34,8 +36,9 @@ $(document).ready(function() {
 
   var redrawTable = function(responseObject) {
     
-    var comment = (responseObject.comment);
-    var userEmail = $('#current_email').text();
+    var comment = (responseObject.data.comment);
+    var userEmail = (responseObject.email);
+    //var userEmail = $('#current_email').text();
     var myString = "<tr><td>" + comment + "</td><td>" + userEmail + "</td>";
     myString += "<td class=\"delete-btn\"><a ref=\"\">Remove</a></td></tr>";
 

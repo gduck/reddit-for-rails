@@ -14,12 +14,18 @@ class CommentsController < ApplicationController
     # binding.pry
 
     # if you pass the current_user
-    comment = current_user.comments.new(:post_id => params[:post_id], :comment => params[:comment])
+    comment = Comment.new(
+      :post_id => params[:post_id], 
+      :comment => params[:comment], 
+      :user => current_user)
 
 
     if comment.save
       # this will set the response for the ajax success function
-      render json: comment, status: 201
+      render json: {
+        data: comment,
+        email: current_user.email
+        }, status: 201
     else
       # redirect_to :back
     end
