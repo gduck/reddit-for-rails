@@ -3,12 +3,6 @@ class CommentsController < ApplicationController
     @comments = Comment.all
   end
 
-# new is the page
-  #def new
-  #  @comment = Comment.new
-  #end
-
-
   # in resources, #create comes from POST method
   def create
     # creates an instance of the record
@@ -16,7 +10,14 @@ class CommentsController < ApplicationController
     #comment = Comment.new(comment_params)
     comment = current_user.comments.new(comment_params)
     if comment.save
-      redirect_to comment.post
+      # this says we need to render pages in the following formats
+      respond_to do |format|
+        # order matters
+        # in Rails convention is we need to create a file called 'create.js.erb' insdie the comments view folder
+        format.js
+        format.html {redirect_to comment.post}
+      end
+      # redirect_to comment.post
     else
       redirect_to :back
     end

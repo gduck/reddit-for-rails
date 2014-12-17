@@ -7,17 +7,19 @@
         <th>Owner</th>
         <th>Title</th>
         <th>url</th>
-        <th>votes</th>
+        <th class="center-align">votes</th>
+        <th class="center-align">comments</th>
       </tr>
     </thead>
     <tbody>
       <% @posts.each do |post| %>
         <tr>  
           <td><%= post.id %></td>
-          <td class="col-ID"><%= post.user.email %></td>
+          <td class="col-ID"><%= link_to post.user.email, post.user %></td>
           <td class="col-title"><%= link_to post.title, post %></td>
           <td class="col-URL"><%= post.url %></td>
-          <td class="col-votes"><%= "Votes #{post.post_votes.count}"%></td>
+          <td class="center-align"><%= "#{post.post_votes.count}"%></td>
+          <td class="center-align"><%= "#{post.comments.count}"%></td>
         </tr>
       <% end %>
     </tbody>
@@ -34,14 +36,16 @@
         <%= form_for @post, :method => :post do |f| %>
           <td>
             <%= flash[:message] %>
-          </td><td class="third left-align">
+          </td><td class="left-align">
             <%= f.label :title %>
-            <%= f.text_field :title %>
-          </td><td class="third left-align">
+            <%= f.text_field :title, :class => "form-control" %>
+          </td><td class="left-align">
             <%= f.label :url %>
-            <%= f.text_field :url %>
+            <%= f.text_field :url, :class => "form-control" %>
           </td><td>
-            <%= f.submit "Submit" %>
+            <div class="btn-group"><button class="btn btn-default" type="button">
+            <%= f.submit "Submit" %></button>
+            </div>
           </td>
         <% end %>
       </tr>

@@ -28,7 +28,7 @@
 
 <div class="col-xs-10">
   <div class="table table-style">
-    <%= form_for @comment do |f| %>
+    <%= form_for @comment, :remote => true do |f| %>
   
       <%= f.label :Comment %>
       <%= f.text_field :comment %>
@@ -49,11 +49,9 @@
     </tr>
   </thead>
   <tbody>
-    <% @post.comments.each do |comment| %>
-    <tr>
-      <td><%= comment.comment %></td>
-      <td><%= comment.user.email %></td>
-    </tr>
+    <% @post.comments.each do |com| %>
+      <%= render :partial => "comment",
+       :locals => {:x => com } %>
     <% end %>
   </tbody>
 </table>

@@ -17,10 +17,8 @@
     </thead>
     <tbody>
       <% @user.posts.each do |post| %>
-        <tr>
-          <td class="post-title"><%= link_to "#{post.title}", post %></td>
-          <td class="post-URL"><%= post.url %></td>
-        </tr>
+       <%= render :partial => "post", 
+          :locals => { :post => post } %>
       <% end %>
     </tbody>
   </table>
@@ -37,6 +35,9 @@
     </thead>
     <tbody>
       <% @user.comments.each do |comment| %>
+      <!-- not going to call this as different comment reqs -->
+      <%#= render :partial => "comment", 
+          :locals => {:x => comment } %>
         <tr>
           <td class="post-title"><%= link_to "#{comment.post.title}", post_path %></td>
           <td class="comment"><%= comment.comment %></td>
