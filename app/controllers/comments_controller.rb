@@ -8,14 +8,16 @@ class CommentsController < ApplicationController
     # creates an instance of the record
     # that hasn't been saved yet
     #comment = Comment.new(comment_params)
-    comment = current_user.comments.new(comment_params)
-    if comment.save
+    @comment = current_user.comments.new(comment_params)
+
+    if @comment.save
       # this says we need to render pages in the following formats
       respond_to do |format|
         # order matters
         # in Rails convention is we need to create a file called 'create.js.erb' insdie the comments view folder
         format.js
-        format.html {redirect_to comment.post}
+        puts ">>>>>>>>>>>>>>>>> comment #{@comment.comment}"
+        # format.html {redirect_to @comment.post}
       end
       # redirect_to comment.post
     else

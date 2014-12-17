@@ -30,11 +30,11 @@
   <div class="table table-style">
     <%= form_for @comment, :remote => true do |f| %>
   
-      <%= f.label :Comment %>
+      <%= f.label :comment %>
       <%= f.text_field :comment %>
 
       <%= f.text_field :post_id, :value => @post.id, :hidden => true %>
-      <%= f.submit "Submit new comment" %>
+      <%= f.submit "Submit new comment", :type => 'submit', :id => 'btn_cmt' %>
     <% end %>
   </div>
 </div>
@@ -48,10 +48,10 @@
       <th>Owner</th>
     </tr>
   </thead>
-  <tbody>
-    <% @post.comments.each do |com| %>
+  <tbody id="comments_list">
+    <% @post.comments.reverse.each do |com| %>
       <%= render :partial => "comment",
-       :locals => {:x => com } %>
+       :locals => {:comment => com } %>
     <% end %>
   </tbody>
 </table>

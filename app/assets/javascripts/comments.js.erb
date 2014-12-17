@@ -5,8 +5,9 @@
 
 $(document).ready(function() {
 
-  $(document).on('click', '.btn_cmt', function(e) {
+  $(document).on('submit', '#btn_cmt', function(e) {
     e.preventDefault();
+    console.log("A click");
 
     var postID = $(this).data('id');
     var thisComment = $("#comment_comment").val();
