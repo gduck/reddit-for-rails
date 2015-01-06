@@ -1,0 +1,11 @@
+<h2>This is where we can upload a profile pic</h2>
+
+<%= image_tag @user.avatar.url %>
+<%= image_tag @user.avatar.url (:medium) %>
+<%= image_tag @user.avatar.url (:thumb) %><br>
+
+<%= form_for @user do |f| %>
+  <%= f.label :avatar, @user.avatar_file_name %>
+  <%= f.file_field :avatar %>
+  <%= f.submit "Upload profile picture" %>
+<% end %>

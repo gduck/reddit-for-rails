@@ -12,7 +12,19 @@ class UsersController < ApplicationController
   end
 
   def new
-    
   end
+
+  def edit
+    @user = current_user
+  end
+
+  def update
+    @user = current_user
+    if params[:user] != nil
+      @user.update(:avatar => params[:user][:avatar]) if params[:user][:avatar] != nil
+      redirect_to :back
+    end
+  end
+
 end
 

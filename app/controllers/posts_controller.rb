@@ -26,7 +26,7 @@ class PostsController < ApplicationController
     # this will retrieve the post with a specific id
     @post = Post.find(params[:id])
     @comment = Comment.new
-    puts "This is the params: " + params.to_json
+    #puts "This is the params: " + params.to_json
   end
 
   # the parameters that we allow

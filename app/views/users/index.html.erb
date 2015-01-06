@@ -1,28 +1,6 @@
 
-<div id="list-posts">
-  <h3>A list of posts:</h3>
+<h1>Upload a profile picture</h1>
 
-  <table class="user-table col-xs-12">
-    <thead>
-      <tr>
-        <th>User ID</th>
-        <th>Email</th>
-        <th>link</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @users.each do |user| %>
-        <tr>  
-        <%= link_to user do %>
-          <td class="user-ID"><%= user.id %></td>
-          <td class="user-email"><%= user.email %></td>
-          <td class="user-link"><%= link_to "link this user", user %></td>
-        <% end %>  
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
-</div>
 
 
 

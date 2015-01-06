@@ -12,7 +12,6 @@ class Post < ActiveRecord::Base
 
 
   validate :spam_free
-
   validate :post_count
 
   private

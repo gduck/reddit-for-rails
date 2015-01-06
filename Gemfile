@@ -37,6 +37,14 @@ gem 'meta_request', group: :development
 gem 'better_errors', group: :development
 gem 'binding_of_caller', group: :development
 
+# USE THIS
+# rails g paperclip user avatar
+# avatar will be a url in user table 
+gem "paperclip", "~> 4.2"
+gem 'aws-sdk', '~> 1.5.7'
+
+# # Managing Sensitive ENV variables
+gem 'dotenv-rails', :groups => [:development, :test]
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
