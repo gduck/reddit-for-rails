@@ -6,7 +6,7 @@ class PostsController < ApplicationController
 
   # in resources, #create comes from POST method
   def create
-    # WHERE DOES CURRENT_USER COME FROM??
+    
     post = current_user.posts.new(post_params)
     # creates an instance of the record
     # that hasn't been saved yet

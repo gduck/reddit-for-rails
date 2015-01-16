@@ -1,5 +1,40 @@
 <div id="list-posts" class="col-xs-10">
   <h3 class="heading">A list of posts:</h3><br>
+
+  <!-- Angular -->
+  <input type="text" placeholder="Angular - Please type something" ng-model="name">
+  <h1>{{ name }}</h1>
+
+  <h3>Connect Angular Controller Defined in js to View</h3>
+  <div ng-controller="PostCtrl">
+    {{ brand }}
+    {{ prices }}
+    <!-- track by index to make a duplicate unique -->
+    <div>Total Price: {{ sumOfPrices | currency }}</div>
+    <ul ng-repeat="price in prices track by $index">
+      <li>{{ price | currency }}</li>   
+    </ul>
+
+    <!-- addPrice will look for a function in the PostCtrl -->
+    <form ng-submit="addPrice()">
+      <input type="number" min="0.01" max="100" step="0.01" placeholder="Add a new price" ng-model="newPrice">
+    </form>
+    
+  </div>
+
+
+  <!-- Jquery -->
+  <!-- <input type="text" placeholder="JQuery - Please type something" id="name_input">
+  <h3 id="name_output"></h3>
+  <script type="text/javascript">
+    $(document).ready(function() {
+      $('#name_input').keyup(function () {
+        $('#name_output').text($('#name_input').val());
+      });
+    });
+  </script> -->
+
+
   <table class="table table-style">
     <thead>
       <tr>

@@ -19,8 +19,6 @@ gem 'coffee-rails', '~> 4.0.0'
 # Use jquery as the JavaScript library
 gem 'jquery-rails', '~> 2.3.0'
 
-# Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
-gem 'turbolinks'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
@@ -36,6 +34,8 @@ gem 'meta_request', group: :development
 
 gem 'better_errors', group: :development
 gem 'binding_of_caller', group: :development
+
+gem 'angularjs-rails'
 
 # USE THIS
 # rails g paperclip user avatar
