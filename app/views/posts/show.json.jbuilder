@@ -8,6 +8,8 @@ json.post do
 
   json.comments @post.comments do |comment|
     json.content comment.comment
-    json.useremail comment.user.email
+    json.user do
+      json.email comment.user.email
+    end
   end
 end

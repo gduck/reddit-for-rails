@@ -33,8 +33,8 @@
     <tbody id="comments_list">
       <tr ng-repeat="comment in post.comments track by $index">
         <td>{{comment.content}}</td>
-        <td>{{comment.useremail}}</td>
-        <td class="delete-btn"><a ref="" >Remove</a></td>
+        <td>{{comment.user.email}}</td>
+        <td class="delete-btn"><a ref="">Remove</a></td>
       </tr>
     </tbody>
   </table>
