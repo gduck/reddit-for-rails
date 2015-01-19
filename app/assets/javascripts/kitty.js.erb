@@ -1,0 +1,94 @@
+// var app = angular.module('app_name', [array of module names]);
+// for example - arr_of_module_names = ['ngRoute', 'ng-polymer-elements']
+
+// initiate angular, no extra modules []
+var app = angular.module('kitty', ['ngRoute']);
+
+
+// let's define the routing for angular
+// we are moving the ruby views to Angular views
+// providing new routes for the front end only
+// app.config(function($routeProvider) {
+//   $routeProvider.when('/path', {
+//     templateUrl: 'the path for the view',
+//     controller: 'controller name'
+//   })
+// })
+
+// need to change existing configs&controllers add []
+// app.config(['$routeProvider', function($routeProvider){
+// }])
+
+app.config(['$routeProvider', function($routeProvider){
+  $routeProvider.when('/posts', {
+    templateUrl: "<%= asset_path('posts-list.html') %>",
+    controller: 'PostListCtrl'
+  }).
+  when('/posts/:id', {
+    templateUrl: "<%= asset_path('post-show.html') %>",
+    controller: 'PostShowCtrl'
+  });
+}])
+
+app.controller('PostShowCtrl', ['$scope', '$http', '$routeParams', function($scope, $http, $routeParams) {
+  $http.get('/posts/'+$routeParams.id+'.json').success(function(data) {
+    console.log("I'm in the postshowctrl!!!!!");
+    console.log(data);
+    $scope.post = data.post;
+  })
+}])
+
+app.controller('PostListCtrl', ['$scope', '$http', function($scope, $http) {
+  //array = ["hello", "kitty", "world"];
+  //$scope.words = array
+
+  // 'get' reads/ collect information
+  // $http.get('url').success(function(data){
+  //   console.log(data);
+  // });
+  $http.get('/posts.json').success(function(data){
+    console.log(data);
+    $scope.posts = data['posts'];
+    console.log(data['posts'][0]['title']);
+    // is the same as
+    // console.log($scope.posts['posts'][0]['title']);
+    // but this won't work
+    // console.log(posts['posts'][0]['title']);
+  })
+}])
+
+// define a controller inside angular
+// args for function refers to modules if you have any
+app.controller("PostCtrl", ['$scope', function($scope) {
+  // $ here is scope not jquery
+  $scope.brand = "Coca-cola";
+  $scope.prices = [7.9, 10, 8.5];
+
+  $scope.totalAmount = function(){
+     var total = 0;
+     for (var i = 0; i < $scope.prices.length; i++) {
+        total += ($scope.prices[i]);
+      }
+     console.log("total is " + total);
+     return total;
+  }
+  $scope.sumOfPrices = $scope.totalAmount();
+
+  $scope.addPrice = function() {
+    var newItem = parseFloat($scope.newPrice);
+    if ($scope.priceForm.$valid && $scope.newPrice != null) {
+      $scope.prices.push(parseFloat($scope.newPrice));
+    } else {
+      alert("form is invalid");
+    }
+    // data binding, this will update the inputbox
+    $scope.newPrice = "";
+    $scope.sumOfPrices = $scope.totalAmount();
+  }
+  console.log($scope);
+}]);
+
+// for the search/ filter function
+app.controller('CompanyCtrl', ['$scope', function($scope) {
+  $scope.companies = ['Apple', 'Google', 'Microsoft', '3HK', 'GA'];
+}])

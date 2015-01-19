@@ -2,6 +2,8 @@ class PostsController < ApplicationController
   def index
     @posts = Post.all
     @post = Post.new
+
+    #render json: @posts
   end
 
   # in resources, #create comes from POST method

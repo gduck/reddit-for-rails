@@ -1,0 +1,22 @@
+
+<h1>hello world!</h1>
+
+<!-- don't need to call controller  ng-model="PostListCtrl" -->
+<!-- already bound in kitty.js -->
+<div>
+  <ul ng-repeat="item in words track by $index">
+    <li>{{ item }}</li>
+  </ul>
+</div>
+
+<table class="table table-condensed">
+  <th>Title</th>
+  <th>Post</th>
+  <th>Link</th>
+  <tr ng-repeat="post in posts track by $index">
+    <td>{{ post.title }}</td>
+    <td ng-if="post.url">{{ post.url }}</td>
+    <td ng-if="!post.url">No URL</td>
+    <td><a ng-href="#{{post.link}}">link</a></td>
+  </tr>
+</table>
