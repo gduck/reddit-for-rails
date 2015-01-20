@@ -7,7 +7,7 @@ json.post do
   json.createdat @post.created_at
 
   json.comments @post.comments do |comment|
-    json.content comment.comment
+    json.comment comment.comment
     json.user do
       json.email comment.user.email
     end

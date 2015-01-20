@@ -1,41 +1,54 @@
-<div class="col-xs-10">
+<!-- <div ng-if="!ready">
+  <img src="/assets/giphy.gif">
+<div> -->
 
-  <table class="table table-style table-condensed">
-    
-    <tbody>
-      {{post.id}}
-      <tr>
-        <td><h3>{{post.title}}</h3></td>
-      </tr>
-      <tr>
-        <td><h4 class="indent">{{post.url}}</h4></td>
-      </tr>
-      <tr>
-        <td><h5 class="indent"><a ng-href="#{{post.useremail}}">{{post.useremail}}</a></h5></td>
-      </tr>
-      <tr>
-        <td><h5 class="indent">Created at: {{post.createdat}}</h5></td>
-      </tr>
-    </tbody>
-  </table>
-</div>
+<!-- <div ng-if="ready"> -->
+<div>
+  <div class="col-xs-10">
+    <a ng-href="#/posts">
+      <button> Home</button>
+    </a>
+    <table class="table table-style table-condensed">
+      
+      <tbody>
+        <tr>
+          <td><h3>{{post.title}}</h3>{{post.id}}</td>
+        </tr>
+        <tr>
+          <td><h4 class="indent">{{post.url}}</h4></td>
+        </tr>
+        <tr>
+          <td><h5 class="indent"><a ng-href="#{{post.useremail}}">{{post.useremail}}</a></h5></td>
+        </tr>
+        <tr>
+          <td><h5 class="indent">Created at: {{post.createdat}}</h5></td>
+        </tr>
+      </tbody>
+    </table>
+    <!-- submit a new comment -->
+    <form ng-submit="submitComment()">
+      <input type="text" ng-model="commentContent">
+      <button type="submit">Submit</button>
+    </form>
+  </div>
 
-<div class="col-xs-10">
-  <h3 class="heading top-space col-xs-10">Comments</h3>
-  <table class="table table-style table-alt-color">
-    <thead>
-      <tr>
-        <th>Content</th>
-        <th>Owner</th>
-        <th>Delete</th>
-      </tr>
-    </thead>
-    <tbody id="comments_list">
-      <tr ng-repeat="comment in post.comments track by $index">
-        <td>{{comment.content}}</td>
-        <td>{{comment.user.email}}</td>
-        <td class="delete-btn"><a ref="">Remove</a></td>
-      </tr>
-    </tbody>
-  </table>
-</div>
+  <div class="col-xs-10">
+    <h3 class="heading top-space col-xs-10">Comments</h3>
+    <table class="table table-style table-alt-color">
+      <thead>
+        <tr>
+          <th>Content</th>
+          <th>Owner</th>
+          <th>Delete</th>
+        </tr>
+      </thead>
+      <tbody id="comments_list">
+        <tr ng-repeat="comment in post.comments track by $index">
+          <td>{{comment.comment}}</td>
+          <td>{{comment.user.email}}</td>
+          <td class="delete-btn"><a ref="">Remove</a></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+<div>

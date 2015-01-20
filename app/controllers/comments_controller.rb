@@ -8,6 +8,10 @@ class CommentsController < ApplicationController
     # creates an instance of the record
     # that hasn't been saved yet
     #comment = Comment.new(comment_params)
+    # @comment = current_user.comments.new(comment_params)
+   puts params[:comment][:comment]
+   puts params[:comment][:post_id]
+
     @comment = Comment.new(
       :comment => params[:comment][:comment],
       :post_id => params[:comment][:post_id],
@@ -20,21 +24,24 @@ class CommentsController < ApplicationController
       #   :email => current_user.email
       #   }, :status => 201
 
-
+      #Angular way
+      puts ">>>>>>>>>>>>>YEAH"
+      render 'create.json.jbuilder'
       # this says we need to render pages in the following formats
-      respond_to do |format|
+      #respond_to do |format|
 
         # order matters
         # in Rails convention is we need to create a file called 'create.js.erb' insdie the comments view folder
-        format.js
-        format.html {redirect_to @comment.post}
-      end
+        #format.js
+        #format.html {redirect_to @comment.post}
+      #end
       # redirect_to comment.post
     else
-      respond_to do |format|
-        format.js { render 'fail.js.erb' }
-        format.html { redirect_to :back }
-      end
+      puts "not supposed to be here"
+      #respond_to do |format|
+      #  format.js { render 'fail.js.erb' }
+      #  format.html { redirect_to :back }
+      #end
     end
 
   end

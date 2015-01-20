@@ -30,12 +30,39 @@ app.config(['$routeProvider', function($routeProvider){
   });
 }])
 
-app.controller('PostShowCtrl', ['$scope', '$http', '$routeParams', function($scope, $http, $routeParams) {
+app.controller('PostShowCtrl', ['$scope', '$http', '$routeParams', '$timeout', function($scope, $http, $routeParams, $timeout) {
+
+  $scope.ready = false;
+
   $http.get('/posts/'+$routeParams.id+'.json').success(function(data) {
     console.log("I'm in the postshowctrl!!!!!");
-    console.log(data);
     $scope.post = data.post;
+    $timeout(function() {
+      $scope.ready = true;
+    }, 2000);
+    console.log(data);
   })
+
+
+  $scope.submitComment = function() {
+    console.log($scope.commentContent);
+    var data = {
+      'comment': {
+        'comment': $scope.commentContent,
+        'post_id': $routeParams.id
+      }
+    }
+    console.log("about to http.post");
+
+    var url = "/comments";
+    $http.post(url, data).success(function(response) {
+      console.log("data: ", data);
+      console.log("response: ", response);
+      console.log("response.comment: ", response.comment);
+      console.log($scope.post.comments);
+      $scope.post.comments.push(response.comment);
+    })
+  };
 }])
 
 
@@ -52,25 +79,27 @@ app.controller('PostListCtrl', ['$scope', '$http', '$location', function($scope,
   $scope.addPost = function() {
     var url = "/posts";
     var data = {
-      title: $scope.title,
-      url: $scope.url
+      'post': {
+        'title': $scope.newTitle,
+        'url': $scope.newUrl
+      }
     }
-    $http.post(url, data).success(function(data, status, xhr){
-      // console.log(data);
-      // console.log(status);
-      // console.log(xhr);
-      // console.log("awesome!!");
-      // $scope.posts.push(data.post);
-      $location.url(data.post.link);
+    $http.post(url, data).success(function(response, status, xhr){
+      console.log("response ", response);
+      $scope.posts.push(response.post);
+      //$location.url(response.post.link);
     }).error(function(response) {
       console.log("problem!! - " + response);
     })
+    $scope.newTitle = "";
+    $scope.newUrl = "";
   }
+
 
   $http.get('/posts.json').success(function(data){
     console.log(data);
     $scope.posts = data['posts'];
-    console.log(data['posts'][0]['title']);
+    // console.log(data['posts'][0]['title']);
     // is the same as
     // console.log($scope.posts['posts'][0]['title']);
     // but this won't work
