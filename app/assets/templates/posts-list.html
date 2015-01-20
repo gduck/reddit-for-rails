@@ -1,10 +1,10 @@
 
 <h1>hello world!</h1>
 
-<!-- don't need to call controller  ng-model="PostListCtrl" -->
+<!-- don't need to call controller  data-ng-model="PostListCtrl" -->
 <!-- already bound in kitty.js -->
 <div>
-  <ul ng-repeat="item in words track by $index">
+  <ul data-ng-repeat="item in words track by $index">
     <li>{{ item }}</li>
   </ul>
 </div>
@@ -13,10 +13,33 @@
   <th>Title</th>
   <th>Post</th>
   <th>Link</th>
-  <tr ng-repeat="post in posts track by $index">
+  <tr data-ng-repeat="post in posts track by $index">
     <td>{{ post.title }}</td>
-    <td ng-if="post.url">{{ post.url }}</td>
-    <td ng-if="!post.url">No URL</td>
-    <td><a ng-href="#{{post.link}}">link</a></td>
+    <td data-ng-if="post.url">{{ post.url }}</td>
+    <td data-ng-if="!post.url">No URL</td>
+    <td><a data-ng-href="#{{post.link}}">link</a></td>
   </tr>
 </table>
+
+<div id="new-post" class="col-xs-10">
+  <h3 class="heading">New post:</h3>
+  <form data-ng-submit="addPost()">
+    <table class="table table-style">
+      <tbody>
+        <tr>
+          <td class="left-align">
+            <label for="title">Title</label>
+            <input name="title" data-ng-model="title">
+          </td>
+          <td class="left-align">
+            <label for="url">url</label>
+            <input name="url" data-ng-model="url">
+          </td>
+          <td>
+            <input class="btn btn-default" type="submit">
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </form>
+</div>

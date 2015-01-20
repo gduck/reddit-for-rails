@@ -1,7 +1,7 @@
 class PostsController < ApplicationController
   def index
     @posts = Post.all
-    @post = Post.new
+    # @post = Post.new
 
     #render json: @posts
   end
@@ -9,16 +9,20 @@ class PostsController < ApplicationController
   # in resources, #create comes from POST method
   def create
     
-    post = current_user.posts.new(post_params)
+    @post = current_user.posts.new(post_params)
     # creates an instance of the record
     # that hasn't been saved yet
     # post = Post.new(post_params)
     
-    if post.save
-      redirect_to posts_path
+    if @post.save
+      # render :json
+      # puts ">>>>>>>>>>>>> in post.save"
+      render 'create.json.jbuilder'
+      # render json: {success: true}
     else
-      flash[:message] = post.errors.messages
-      redirect_to :back
+      # flash[:message] = @post.errors.messages
+      render json: {messages: @post.errors.messages}, status: 500
+      # redirect_to :back
     end
   end
 

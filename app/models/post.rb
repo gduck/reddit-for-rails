@@ -11,8 +11,8 @@ class Post < ActiveRecord::Base
   validates :url, :length => { maximum: 140 }, :allow_blank => true, :format => { with: URL_REGEX }
 
 
-  validate :spam_free
-  validate :post_count
+  # validate :spam_free
+  # validate :post_count
 
   private
 

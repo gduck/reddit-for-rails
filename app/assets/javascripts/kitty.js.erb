@@ -38,7 +38,10 @@ app.controller('PostShowCtrl', ['$scope', '$http', '$routeParams', function($sco
   })
 }])
 
-app.controller('PostListCtrl', ['$scope', '$http', function($scope, $http) {
+
+
+
+app.controller('PostListCtrl', ['$scope', '$http', '$location', function($scope, $http, $location) {
   //array = ["hello", "kitty", "world"];
   //$scope.words = array
 
@@ -46,6 +49,24 @@ app.controller('PostListCtrl', ['$scope', '$http', function($scope, $http) {
   // $http.get('url').success(function(data){
   //   console.log(data);
   // });
+  $scope.addPost = function() {
+    var url = "/posts";
+    var data = {
+      title: $scope.title,
+      url: $scope.url
+    }
+    $http.post(url, data).success(function(data, status, xhr){
+      // console.log(data);
+      // console.log(status);
+      // console.log(xhr);
+      // console.log("awesome!!");
+      // $scope.posts.push(data.post);
+      $location.url(data.post.link);
+    }).error(function(response) {
+      console.log("problem!! - " + response);
+    })
+  }
+
   $http.get('/posts.json').success(function(data){
     console.log(data);
     $scope.posts = data['posts'];
@@ -55,6 +76,8 @@ app.controller('PostListCtrl', ['$scope', '$http', function($scope, $http) {
     // but this won't work
     // console.log(posts['posts'][0]['title']);
   })
+  // $http.post
+
 }])
 
 // define a controller inside angular
